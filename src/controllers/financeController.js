@@ -63,9 +63,12 @@ const deleteFinance = async (req, res) => {
             return res.status(404).json({ message: 'Data tidak ditemukan' });
         }
 
-        await finance.remove();
+        await Finance.deleteOne({ _id: id });
+
+        // await finance.remove();
         res.status(200).json({ message: 'Data berhasil dihapus' });
     } catch (error) {
+        console.log(error)
         res.status(500).json({ message: 'Gagal menghapus data finance' });
     }
 };

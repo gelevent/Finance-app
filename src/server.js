@@ -1,3 +1,3 @@
 const financeRoutes = require('./routes/financeRoutes');
 
-app.use('/api/finances', financeRoutes);
+app.use('/finances', financeRoutes);

@@ -8,6 +8,7 @@ const {
     deleteFinance,
     getFinanceSummary,
     filterFinance,
+    getCategoryStats    
 } = require('../controllers/financeController');
 
 router.get('/', protect, getFinances);
@@ -22,4 +23,5 @@ router.get('/summary', protect, getFinanceSummary);
 
 router.get('/filter', protect, filterFinance);
 
+router.get('/category-stats', protect, getCategoryStats);
 module.exports = router;

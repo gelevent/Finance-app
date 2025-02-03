@@ -11,6 +11,7 @@ const {
 } = require('../controllers/financeController');
 const { protect } = require('../middleware/authMiddleware');
 const { getMonthlyStats } = require('../controllers/financeController');
+const { getFinanceReportByPeriod } = require('../controllers/financeController')
 
 router.get('/', protect, getFinances);
 
@@ -27,4 +28,6 @@ router.get('/filter', protect, filterFinance);
 router.get('/category-stats', protect, getCategoryStats);
 
 router.get('/monthly-stats', protect, getMonthlyStats);
+
+router.get('/report', protect, getFinanceReportByPeriod);
 module.exports = router;

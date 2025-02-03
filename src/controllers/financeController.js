@@ -10,10 +10,18 @@ const getFinances = async (req, res) => {
 };
 
 const createFinance = async (req, res) => {
-    const { title, amount, type } = req.body;
+    const { title, amount, type, category } = req.body;
 
-    if (!title || !amount || !type) {
+    if (!title || !amount || !type || !category) {
         return res.status(400).json({ message: 'Semua field harus diisi' });
+    }
+
+    if (!['income', 'expense'].includes(type)) {
+        return res.status(400).json({ message: 'Tipe harus income atau expense' });
+    }
+
+    if (!['salary', 'education', 'health', 'food', 'transportation', 'entertainment', 'utilities', 'others'].includes(category)) {
+        return res.status(400).json({ message: 'Kategori harus salary, food, transportation, entertainment, utilities, others' });
     }
 
     try {
@@ -22,6 +30,7 @@ const createFinance = async (req, res) => {
             title,
             amount,
             type,
+            category,
         });
 
         res.status(201).json(finance);
@@ -136,4 +145,7 @@ const getFinanceSummary = async (req, res) => {
         res.status(500).json({ message: error.message });
     }
 };
+
+
+
 module.exports = { getFinances, createFinance, updateFinance, deleteFinance, filterFinance, getFinanceSummary};

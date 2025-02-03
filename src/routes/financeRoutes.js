@@ -1,15 +1,15 @@
 const express = require('express');
 const router = express.Router();
-const { protect } = require('../middleware/authMiddleware');
 const {
     getFinances,
     createFinance,
     updateFinance,
-    deleteFinance,
+    deleteFinance,  
     getFinanceSummary,
     filterFinance,
     getCategoryStats    
 } = require('../controllers/financeController');
+const { protect } = require('../middleware/authMiddleware');
 
 router.get('/', protect, getFinances);
 
